@@ -19,7 +19,7 @@ class TicketView extends StatelessWidget {
     final size = AppLayout.getSize(context);
     return SizedBox(
       width: size.width*0.85,
-      height: AppLayout.getHeight(GetPlatform.isAndroid==true?167:169),
+      height: AppLayout.getHeight(GetPlatform.isAndroid==true?190:169),
       child: Container(
         margin:  EdgeInsets.only(right: AppLayout.getHeight(16)),
         child: Column(
@@ -31,7 +31,7 @@ class TicketView extends StatelessWidget {
             Container(
 
               decoration:  BoxDecoration(
-                color: isColor==null? Color(0xFF526799):Colors.white,
+                color: isColor==null? const Color(0xFF526799):Colors.white,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(AppLayout.getHeight(21)),
                 topRight: Radius.circular(AppLayout.getHeight(21)))
               ),
@@ -45,18 +45,18 @@ class TicketView extends StatelessWidget {
                       ),
 
                       Expanded(child: Container()),
-                      ThickContainer(isColor:true),
+                      const ThickContainer(isColor:true),
                       Expanded(child: Stack(
                         children: [
                           SizedBox(
                             height: AppLayout.getHeight(24),
-                            child: AppLayoutBuilderWidget(sections: 6,),
+                            child: const AppLayoutBuilderWidget(sections: 6,),
                           ),
-                          Center(child: Transform.rotate(angle: 1.5,child: Icon(Icons.local_airport_rounded, color: isColor==null?Colors.white:Color(0xFF8ACCF7)),)),
+                          Center(child: Transform.rotate(angle: 1.5,child: Icon(Icons.local_airport_rounded, color: isColor==null?Colors.white:const Color(0xFF8ACCF7)),)),
 
                         ],
                       )),
-                      ThickContainer(isColor:true),
+                      const ThickContainer(isColor:true),
 
                       Expanded(child: Container()),
 
@@ -93,7 +93,7 @@ class TicketView extends StatelessWidget {
                     child: DecoratedBox(
                       decoration: BoxDecoration(
                         color: isColor==null? Colors.grey.shade200:Colors.white,
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                         topRight:  Radius.circular(10),
                           bottomRight: Radius.circular(10)
                         )
