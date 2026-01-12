@@ -1,3 +1,5 @@
+import 'package:booktickets/screens/login_screen.dart';
+import 'package:booktickets/services/auth_service.dart';
 import 'package:booktickets/utils/app_layout.dart';
 import 'package:booktickets/utils/app_styles.dart';
 import 'package:booktickets/widgets/column_layout.dart';
@@ -5,6 +7,7 @@ import 'package:booktickets/widgets/layout_builder_widget.dart';
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -267,6 +270,57 @@ class ProfileScreen extends StatelessWidget {
                   ],
                 )
               ],
+            ),
+          ),
+          Gap(AppLayout.getHeight(25)),
+          // Logout Button
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(15)),
+            child: ElevatedButton.icon(
+              onPressed: () async {
+                // Show confirmation dialog
+                Get.dialog(
+                  AlertDialog(
+                    title: const Text('Logout'),
+                    content: const Text('Are you sure you want to logout?'),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Get.back(),
+                        child: const Text('Cancel'),
+                      ),
+                      TextButton(
+                        onPressed: () async {
+                          Get.back();
+                          await AuthService.instance.signOut();
+                          Get.offAll(() => const LoginScreen());
+                        },
+                        child: const Text(
+                          'Logout',
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+              icon: const Icon(Icons.logout, color: Colors.white),
+              label: const Text(
+                'Logout',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
+                padding: EdgeInsets.symmetric(
+                  vertical: AppLayout.getHeight(15),
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AppLayout.getHeight(12)),
+                ),
+              ),
             ),
           ),
           Gap(AppLayout.getHeight(25)),
